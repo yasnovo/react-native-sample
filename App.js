@@ -1,6 +1,28 @@
 import React, { Component } from 'react';
 import { AppRegistry, Image } from 'react-native';
 
+class Greeting extends Component {
+    render() {
+        return (
+            <Text>Hello {this.props.name}!</Text>
+        )
+    }
+}
+
+
+export default class LotsOfGreetings  extends Component {
+    render() {
+        return(
+            <View style={{alignItems: 'center'}}>
+                <Greeting name='Rexxar' />
+                <Greeting name='Jania' />
+                <Greeting name='Valeera' />
+            </View>
+        );
+    }
+}
+
+/*
 export default class Bananas extends Component {
     render() {
         let pic = {
@@ -11,4 +33,4 @@ export default class Bananas extends Component {
         );
     }
 }
-
+*/
