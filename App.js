@@ -4,8 +4,9 @@ import { AppRegistry, Text, View } from 'react-native';
 class Blink extends Component {
   constructor(props) {
     super(props);
-    this.stats = {isShowingText: true};
-    // toggle the state every second
+    this.state = {isShowingText: true};
+
+    // Toggle the state every second
     setInterval(() => {
       this.setState(previousState => {
         return { isShowingText: !previousState.isShowingText };
@@ -13,9 +14,9 @@ class Blink extends Component {
     }, 1000);
   }
 
-  render () {
+  render() {
     let display = this.state.isShowingText ? this.props.text : ' ';
-    return(
+    return (
       <Text>{display}</Text>
     );
   }
@@ -26,7 +27,7 @@ export default class BlinkApp extends Component {
     return (
       <View>
         <Blink text='I love to blink' />
-        <Blink text='Yes blink is so great' />
+        <Blink text='Yes blinking is so great' />
         <Blink text='Why did they ever take this out of HTML' />
         <Blink text='Look at me look at me look at me' />
       </View>
