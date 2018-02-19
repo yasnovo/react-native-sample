@@ -1,47 +1,31 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, ListView, Text, View } from 'react-native';
+import { View } from 'react-native';
+import { StackNavigator, addNavigationHelpers } from 'react-navigation';
+import { Provider } from 'react-redux';
 
-export default class Movies extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLoading: true
-    }
-  }
+import { store } from './store.js';
+import { styles } from './styles.js';
+import Hello from './Hello.js';
+import CheckScreen from './CheckScreen.js';
+import HomeScreen from './HomeScreen.js';
+import HttpScreen from './HttpScreen.js'
 
-  componentDidMount() {
-    return fetch('https://facebook.github.io/react-native/movies.json')
-    .then((response) => response.json())
-    .then((responseJson) => {
-      let ds = new ListView.DataSource(
-        {rowHasChanged: (r1, r2) => r1 !== r2});
-      this.setState({
-        isLoading: false,
-        dataSource: ds.cloneWithRows(responseJson.movies),
-      }, function(){
-        // do something
-      });
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-  }
+const AppNavigator = StackNavigator({
+  Home: {screen: HomeScreen},
+  Hello: {screen: Hello},
+  Check: {screen: CheckScreen},
+  Http: {screen: HttpScreen}
+})
 
-  render () {
-    if (this.state.isLoading) {
-      return(
-        <View style={{flex: 1, paddingTop: 20}}>
-          <ActivityIndicator />
-        </View>
-      );
-    }
+class App extends Component {
+  render() {
     return (
-      <View style={{flex: 1, paddingTop: 20}}>
-        <ListView
-          dataSource={this.state.dataSource}
-          renderRow={ (rowData) => <Text>{rowData.title}, {rowData.releaseYear}}</Text> }
-        />
-      </View>
+      <Provider store={ store } >
+        <AppNavigator />
+      </Provider>
     );
   }
 }
+
+export default App;
+
