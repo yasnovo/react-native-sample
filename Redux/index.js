@@ -6,12 +6,17 @@ import {
 
 import AppNavigation from '../Navigation/AppNavigation'
 
-const navReducer = (state, action) => {
+
+const initialState = AppNavigation.router.getStateForAction(
+  AppNavigation.router.getActionForPathAndParams('drawerStack'));
+
+const navReducer = (state=initialState, action) => {
   const newState = AppNavigation.router.getStateForAction(action, state);
   return newState || state;
 }
 
 export default () => {
+
   const rootReducer = combineReducers({
     nav: navReducer,
   })
@@ -20,6 +25,6 @@ export default () => {
     "root",
     state => state.nav,
   );
-  console.log("hogehogeo")
+
   return createStore(rootReducer,applyMiddleware(middleware));
 }

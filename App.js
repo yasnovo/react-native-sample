@@ -6,6 +6,8 @@ import createStore from './Redux';
 import ReduxNavigation from './Navigation/ReduxNavigation'
 
 const store = createStore();
+console.log("app.js!!!!!!!!");
+console.log(store);
 
 export default class App extends React.Component {
   render() {
