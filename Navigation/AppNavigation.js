@@ -34,11 +34,7 @@ const drawerButton = (navigation) =>
     onPress={() => {
       // Coming soon: navigation.navigate('DrawerToggle')
       // https://github.com/react-community/react-navigation/pull/2492
-      if (navigation.state.index === 0) {
-        navigation.navigate('DrawerOpen')
-      } else {
-        navigation.navigate('DrawerClose')
-      }
+        navigation.navigate('DrawerToggle')
     }
   }>Menu</Text>
 
